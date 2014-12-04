@@ -14,6 +14,13 @@
 
 LOCAL_PATH := $(call my-dir)
 
+ifeq ($(RECOVERY_VARIANT),)
+ifeq ($(LOCAL_PATH),bootable/recovery)
+RECOVERY_VARIANT := aosp
+endif
+endif
+
+ifeq ($(RECOVERY_VARIANT),aosp)
 
 include $(CLEAR_VARS)
 
@@ -134,3 +141,5 @@ include $(LOCAL_PATH)/minui/Android.mk \
     $(LOCAL_PATH)/uncrypt/Android.mk \
     $(LOCAL_PATH)/updater/Android.mk \
     $(LOCAL_PATH)/applypatch/Android.mk
+
+endif
